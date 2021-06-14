@@ -1,11 +1,11 @@
-# Chinook DB PoC
-Chinook DB PoC is Front end application which consume DJango Rest API server. Its sends appropriate GET request to retrive data and uses POST request to create objects on server side.
-
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/MaheshBodas/chinook-poc-ui-master)
+# Todo's UI PoC
+Todo's UI PoC is Front end application which consume Todo's Rest API server. Its sends appropriate GET request to retrive data and uses POST request to create objects on server side.
 
  Here is brief introduction to functionality it offers.
 
-1. View All Tracks screen lets user to view list of Tracks
+1. View large number of Todo's user just need to keep scrolling down in order to load additional Todo's records in Grid.
+2. User can re-arrange the Todo's records via Drag and Drop. The re-ordering of Todo's is persisted on page refresh.
+3. View All Todo's screen lets user to view list of Todo's using Client side Pagination.
 
 
 ### It makes use of following technology.
@@ -36,44 +36,21 @@ npm run test
 
 ```
 
-
-## License
-[MIT](https://github.com/coreui/coreui-free-react-admin-template/blob/master/LICENSE) license.
-[MIT](https://github.com/MaheshBodas/chinook-poc-ui-master/LICENSE) license.
-
-Copyright ReactJS PoC (c) 2021-present Mahesh Bodas
-
 ## File Structure
 
 Within the download you'll find the following directories and files:
 
 ```
-chinook-poc-ui-master
+todos-poc-ui-master
 ├── blob
 │   └── Dashboard.png
 ├── CHANGELOG.md
+├── config.yml
+├── docker-compose.yaml
+├── Dockerfile
 ├── LICENSE.md
 ├── package.json
 ├── package-lock.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── manifest.json
-│   ├── _redirects
-│   └── static
-│       ├── images
-│       │   ├── auth.jpeg
-│       │   ├── avatars
-│       │   │   ├── 7.jpg
-│       │   │   ├── admin_office.gif
-│       │   │   ├── editor.gif
-│       │   │   ├── mahesh_4.jpg
-│       │   │   ├── viewalltrack_bk.jpg
-│       │   │   └── viewalltrack.jpg
-│       │   ├── not_found.png
-│       │   ├── undraw_page_not_found_su7k.svg
-│       │   └── undraw_resume_folder_2_arse.svg
-│       └── logo.svg
 ├── README.md
 ├── setnvm.sh
 ├── src
@@ -82,7 +59,7 @@ chinook-poc-ui-master
 │   │   ├── authentication.actions.js
 │   │   ├── index.js
 │   │   ├── user.actions.js
-│   │   └── viewalltracks.action.js
+│   │   └── viewalltodos.action.js
 │   ├── api
 │   │   ├── auth.js
 │   │   ├── session.js
@@ -92,16 +69,24 @@ chinook-poc-ui-master
 │   │   ├── ComposableContainer
 │   │   │   ├── card.css
 │   │   │   └── ComposableContainer.tsx
+│   │   ├── InfiniteScrollGrid
+│   │   │   └── InfiniteScrollGrid.jsx
 │   │   ├── LoaderComponent
 │   │   │   └── LoaderComponent.jsx
+│   │   ├── TodaysTodoGrid
+│   │   │   └── TodaysTodoGrid.jsx
 │   │   ├── ToggleContainer
 │   │   │   ├── card.css
 │   │   │   └── ToggleContainer.tsx
 │   │   ├── utils.js
-│   │   └── ViewTrackGrid
-│   │       ├── ViewTrackGrid.css
-│   │       ├── ViewTrackGrid.css.js
-│   │       └── ViewTrackGrid.jsx
+│   │   ├── ViewTodoGrid
+│   │   │   ├── ViewTodoGrid.css
+│   │   │   ├── ViewTodoGrid.css.js
+│   │   │   └── ViewTodoGrid.jsx
+│   │   └── ViewTodoGridRedux
+│   │       ├── ViewTodoGridRedux.css
+│   │       ├── ViewTodoGridRedux.css.js
+│   │       └── ViewTodoGridRedux.jsx
 │   ├── components
 │   │   ├── account
 │   │   │   ├── AccountProfileDetails.js
@@ -119,7 +104,7 @@ chinook-poc-ui-master
 │   │   ├── authentication.constants.js
 │   │   ├── index.js
 │   │   ├── user.constants.js
-│   │   └── viewalltracks.constants.js
+│   │   └── viewalltodos.constants.js
 │   ├── _helpers
 │   │   ├── auth-header.js
 │   │   ├── fake-backend.js
@@ -147,31 +132,25 @@ chinook-poc-ui-master
 │   │   ├── index.js
 │   │   ├── registration.reducer.js
 │   │   ├── users.reducer.js
-│   │   └── viewalltracks.reducer.js
+│   │   └── viewalltodos.reducer.js
 │   ├── routes.js
 │   ├── _services
 │   │   ├── authentication.services.js
 │   │   ├── index.js
 │   │   ├── user.service.js
-│   │   └── viewalltracks.services.js
+│   │   └── viewalltodos.services.js
 │   ├── serviceWorker.js
 │   ├── __tests__
 │   │   ├── App.test.js
 │   │   ├── Dashboard.test.js
-│   │   ├── ToggleContainer.test.js
-│   │   ├── viewalltracks.actions.test.js
-│   │   └── ViewTrackGrid.test.js
+│   │   └── ToggleContainer.test.js
 │   ├── theme
 │   │   ├── index.js
 │   │   ├── shadows.js
 │   │   └── typography.js
-│   ├── themes
-│   │   └── redmond│   │      
-│   │       ├── jquery-ui.css
-│   │       ├── jquery-ui.min.css
-│   │       └── theme.css
 │   ├── utils
 │   │   ├── auth.js
+│   │   ├── dateutils.js
 │   │   ├── getInitials.js
 │   │   └── request.js
 │   └── views
@@ -195,6 +174,7 @@ chinook-poc-ui-master
 │           │   └── Page500.js
 │           └── register
 │               └── Register.js
+├── todos-ui-28-05-2021.zip
 └── tsconfig.json
 
 ```
@@ -209,7 +189,7 @@ chinook-poc-ui-master
 
 ## License
 
-- Licensed under MIT (https://github.com/mahesh.bodas/chinook-poc-ui-master/master/LICENSE.md)
+- Licensed under MIT (https://github.com/mahesh.bodas/todos-poc-ui-master/master/LICENSE.md)
 
 ## Contact me
 
